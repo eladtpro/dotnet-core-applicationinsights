@@ -17,13 +17,11 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
     {
         private readonly int HitCount;
         private readonly int MaxDegreeOfParallelism;
-        private readonly ILogger<NpmController> logger;
         private readonly VulnerabilityController vulnerability;
         private readonly NpmController npm;
 
-        public LoadController(VulnerabilityController vulnerabilityController, NpmController npmController, IConfiguration onfig, ILogger<NpmController> logger)
+        public LoadController(VulnerabilityController vulnerabilityController, NpmController npmController, IConfiguration onfig)
         {
-            this.logger = logger;
             HitCount = onfig.GetValue<int>("RemoteDependecies:DefaultLoadHitCount");
             MaxDegreeOfParallelism = onfig.GetValue<int>("RemoteDependecies:DefaultLoadMaxDegreeOfParallelism");
             vulnerability = vulnerabilityController;
@@ -34,7 +32,7 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
         [HttpGet]
         public async Task<ContentResult> Get(int? count, int? maxDegreeOfParallelism)
         {
-            Stopwatch timer = new Stopwatch();
+            Stopwatch timer = new();
             timer.Start();
 
             int success = 0, failure = 0;
@@ -42,7 +40,7 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
             maxDegreeOfParallelism ??= MaxDegreeOfParallelism;
 
             int[] calls = new int[count.Value];
-            ConcurrentBag<object> bag = new ConcurrentBag<object>();
+            ConcurrentBag<object> bag = new();
             await calls.ParallelForEachAsync(async item =>
             {
                 try
@@ -61,7 +59,7 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
 
             timer.Stop();
 
-            JObject results = new JObject
+            JObject results = new()
             {
                 new JProperty("duration", timer.Elapsed),
                 new JProperty("success", success),

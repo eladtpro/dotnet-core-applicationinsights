@@ -29,7 +29,7 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
         [HttpGet("{query?}")]
         public async Task<ContentResult> Search(string query)
         {
-            RestClient client = new RestClient($"{baseUrl}?q={query}") { Timeout = timeout };
+            RestClient client = new($"{baseUrl}?q={query}") { Timeout = timeout };
             var request = new RestRequest(Method.GET);
             request.AddHeader("Content-Type", "application/json");
             IRestResponse response = await client.ExecuteAsync(request);

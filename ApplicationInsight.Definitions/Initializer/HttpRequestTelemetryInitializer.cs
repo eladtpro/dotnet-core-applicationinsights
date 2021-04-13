@@ -12,14 +12,14 @@ namespace App.Demo.ApplicationInsight.Definitions.Initializer
     {
         private readonly IHttpContextAccessor context;
 
-        public HttpRequestTelemetryInitializer(IHttpContextAccessor httpContextAccessor, IConfiguration config)
+        public HttpRequestTelemetryInitializer(IHttpContextAccessor httpContextAccessor)
         {
             this.context = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         public void Initialize(ITelemetry telemetry)
         {
-            if (!(telemetry is RequestTelemetry request)) return;
+            if (telemetry is not RequestTelemetry request) return;
 
             request.Properties["Referer"] = context.HttpContext?.Request.Headers["Referer"].ToString();
         }

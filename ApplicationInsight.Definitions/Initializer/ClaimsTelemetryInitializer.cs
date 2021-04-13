@@ -23,7 +23,7 @@ namespace App.Demo.ApplicationInsight.Definitions.Initializer
 
         public void Initialize(ITelemetry telemetry)
         {
-            if (!(telemetry is RequestTelemetry request)) return;
+            if (telemetry is not RequestTelemetry request) return;
 
             foreach (Claim claim in context.HttpContext.User.Claims.Where(c => claims.Contains(c.Type)))
                 request.Properties[claim.Type] = claim?.Value;

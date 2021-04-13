@@ -14,7 +14,7 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
     public class ValuesController : ControllerBase
     {
         private const string Operation = "Operation";
-        private static Lazy<ConcurrentDictionary<int, string>> data = new Lazy<ConcurrentDictionary<int, string>>();
+        private static readonly Lazy<ConcurrentDictionary<int, string>> data = new();
         private static ConcurrentDictionary<int, string> Data => data.Value;
 
         // GET: api/<ValuesController>
@@ -52,7 +52,7 @@ namespace App.Demo.ApplicationInsight.Web.Controllers
                 int id = (Data.Keys.Count < 1) ? 0 : Data.Keys.Max(v => v) + 1;
                 Activity.Current?.AddTag(Operation, $"{nameof(ValuesController)}.{MethodBase.GetCurrentMethod().Name}");
                 if (!Data.TryAdd(id, value))
-                    throw new ArgumentException($"Id {id} already exists in collection.", nameof(id));
+                    throw new ArgumentException($"Id {value} already exists in collection.", nameof(value));
                 return id;
             });
         }

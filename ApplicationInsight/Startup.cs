@@ -35,14 +35,14 @@ namespace App.Demo.ApplicationInsight.Web
             services.AddSingleton<ITelemetryInitializer, ClaimsTelemetryInitializer>();
 
             ApplicationInsightsExtensions.AddApplicationInsightsTelemetry(services, Configuration)
-                .AddApplicationInsightsTelemetryProcessor<TelemetryUnAuthorizedFilter>()
-                .AddApplicationInsightsTelemetryProcessor<TelemetryPathFilter>()
-                .AddApplicationInsightsTelemetryProcessor<TelemetryBotFilter>()
-                .AddApplicationInsightsTelemetryProcessor<TelemetryFastRemoteDependencyCallsFilter>()
-                .AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>()
+                //.AddApplicationInsightsTelemetryProcessor<TelemetryUnAuthorizedFilter>()
+                //.AddApplicationInsightsTelemetryProcessor<TelemetryPathFilter>()
+                //.AddApplicationInsightsTelemetryProcessor<TelemetryBotFilter>()
+                //.AddApplicationInsightsTelemetryProcessor<TelemetryFastRemoteDependencyCallsFilter>()
+                //.AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>()
                 ;
 
-            services.AddControllers();
+            services.AddControllers().AddControllersAsServices();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApplicationInsight", Version = "v1" });
