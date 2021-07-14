@@ -35,11 +35,11 @@ namespace App.Demo.ApplicationInsight.Web
             services.AddSingleton<ITelemetryInitializer, ClaimsTelemetryInitializer>();
 
             ApplicationInsightsExtensions.AddApplicationInsightsTelemetry(services, Configuration)
-                //.AddApplicationInsightsTelemetryProcessor<TelemetryUnAuthorizedFilter>()
-                //.AddApplicationInsightsTelemetryProcessor<TelemetryPathFilter>()
-                //.AddApplicationInsightsTelemetryProcessor<TelemetryBotFilter>()
-                //.AddApplicationInsightsTelemetryProcessor<TelemetryFastRemoteDependencyCallsFilter>()
-                //.AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>()
+                .AddApplicationInsightsTelemetryProcessor<TelemetryUnAuthorizedFilter>()
+                .AddApplicationInsightsTelemetryProcessor<TelemetryPathFilter>()
+                .AddApplicationInsightsTelemetryProcessor<TelemetryBotFilter>()
+                .AddApplicationInsightsTelemetryProcessor<TelemetryFastRemoteDependencyCallsFilter>()
+                .AddApplicationInsightsTelemetryProcessor<SuccessfulDependencyFilter>()
                 ;
 
             services.AddControllers().AddControllersAsServices();
