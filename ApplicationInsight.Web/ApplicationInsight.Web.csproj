@@ -166,6 +166,7 @@
     <Compile Include="Logging\Configuration\ExcludedElementCollection.cs" />
     <Compile Include="Logging\Configuration\AppInsightSection.cs" />
     <Compile Include="Logging\Core\TelemetryProcessor.cs" />
+    <Compile Include="Logging\Core\TrackSoapDependency.cs" />
     <Compile Include="Logging\Extensions\StringExtensions.cs" />
     <Compile Include="Logging\Filters\SuccessfulDependencyFilter.cs" />
     <Compile Include="Logging\Filters\TelemetryBotFilter.cs" />
