@@ -162,8 +162,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logging\Configuration\AppInsightConfiguration.cs" />
-    <Compile Include="Logging\Configuration\AppInsightElement.cs" />
-    <Compile Include="Logging\Configuration\AppInsightElementCollection.cs" />
+    <Compile Include="Logging\Configuration\ExcludedElement.cs" />
+    <Compile Include="Logging\Configuration\ExcludedElementCollection.cs" />
     <Compile Include="Logging\Configuration\AppInsightSection.cs" />
     <Compile Include="Logging\Core\TelemetryProcessor.cs" />
     <Compile Include="Logging\Extensions\StringExtensions.cs" />

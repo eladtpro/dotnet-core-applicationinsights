@@ -2,18 +2,18 @@
 
 namespace App.Demo.ApplicationInsight.Web.Logging.Configuration
 {
-    [ConfigurationCollection(typeof(AppInsightElement))]
+    [ConfigurationCollection(typeof(ExcludedElement))]
 
-    public class AppInsightElementCollection : ConfigurationElementCollection
+    public class ExcludedElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
         {
-            return new AppInsightElement();
+            return new ExcludedElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((AppInsightElement)element).Name;
+            return ((ExcludedElement)element).Path;
         }
     }
 }

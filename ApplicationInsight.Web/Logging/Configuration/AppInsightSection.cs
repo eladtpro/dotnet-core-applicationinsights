@@ -4,17 +4,21 @@ namespace App.Demo.ApplicationInsight.Web.Logging.Configuration
 {
     public class AppInsightSection : ConfigurationSection
     {
-        //<section name = "appinsight" type="App.Demo.ApplicationInsight.Web.Logging.Configuration.AppInsightSection"/>
+        const string DEPENDENCY_THRESHOLD = "dependencythreshold";
+        const string EXCLUDED = "excluded";
 
-        public static AppInsightSection Config = 
-                    ConfigurationManager.GetSection("appinsight") as AppInsightSection;
-
-
-        [ConfigurationProperty("settings", IsDefaultCollection = true)]
-        public AppInsightElementCollection Feeds
+        [ConfigurationProperty(DEPENDENCY_THRESHOLD, IsRequired = true)]
+        public int DependencyThreshold
         {
-            get { return (AppInsightElementCollection)this["settings"]; }
-            set { this["settings"] = value; }
+            get { return (int)this[DEPENDENCY_THRESHOLD]; }
+            set { this[DEPENDENCY_THRESHOLD] = value; }
+        }
+
+        [ConfigurationProperty(EXCLUDED, IsDefaultCollection = true)]
+        public ExcludedElementCollection Exluded
+        {
+            get { return (ExcludedElementCollection)this[EXCLUDED]; }
+            set { this[EXCLUDED] = value; }
         }
     }
 }

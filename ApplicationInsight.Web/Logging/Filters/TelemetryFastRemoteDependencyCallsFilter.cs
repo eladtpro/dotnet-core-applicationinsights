@@ -13,7 +13,7 @@ namespace App.Demo.ApplicationInsight.Web.Logging.Filters
 
         public TelemetryFastRemoteDependencyCallsFilter(ITelemetryProcessor next) : base(next)
         {
-            minDuration = AppInsightConfiguration.DependencyCallThresholdMS;
+            minDuration = AppInsightConfiguration.DependencyThreshold;
         }
 
         /// <summary>                                                                                                               
@@ -24,7 +24,7 @@ namespace App.Demo.ApplicationInsight.Web.Logging.Filters
         {
             DependencyTelemetry dependency = telemetry as DependencyTelemetry;
 
-            if (null == telemetry) return false;
+            if (null == dependency) return false;
 
             if (dependency.Duration.TotalMilliseconds < minDuration) return false;
 

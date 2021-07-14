@@ -10,6 +10,8 @@ namespace App.Demo.ApplicationInsight.Web.Logging.Initializers
         public void Initialize(ITelemetry telemetry)
         {
             if (null == HttpContext.Current) return;
+            if (null == HttpContext.Current.Request.Headers["Referer"]) return;
+
             RequestTelemetry request = telemetry as RequestTelemetry;
             if (null == telemetry) return;
 

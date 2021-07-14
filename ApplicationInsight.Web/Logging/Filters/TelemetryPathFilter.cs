@@ -12,7 +12,7 @@ namespace App.Demo.ApplicationInsight.Web.Logging.Filters
 
         public TelemetryPathFilter(ITelemetryProcessor next) : base(next)
         {
-            excludes = AppInsightConfiguration.ExcludedPathPatterns;
+            excludes = AppInsightConfiguration.ExcludedPaths;
         }
 
         protected override bool Continue(ITelemetry telemetry)

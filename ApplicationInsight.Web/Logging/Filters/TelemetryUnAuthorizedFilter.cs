@@ -17,7 +17,7 @@ namespace App.Demo.ApplicationInsight.Web.Logging.Filters
         protected override bool Continue(ITelemetry telemetry)
         {
             RequestTelemetry requestTelemetry = telemetry as RequestTelemetry;
-            if (null == telemetry) return false;
+            if (null == requestTelemetry) return false;
 
             if (requestTelemetry.ResponseCode.Equals("401", StringComparison.OrdinalIgnoreCase)) return false;
 
